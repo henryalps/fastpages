@@ -35,6 +35,8 @@ def _update_att_ref(line, mime, img):
 # Cell
 def _nb_detach_cell(cell, dest, use_img):
     att,src = cell['attachments'],cell['source']
+    print(att)
+    print(att.values())
     mime,img = first(first(att.values()).items())
 #    ext = mime.split('/')[1]
 #    for i in range(99999):
