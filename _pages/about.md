@@ -1,13 +1,14 @@
 ---
 layout: page
-title: About Me
+title: 關於
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+> 詩雲：
+	世間豈得桃源路，陶庵夢斷終不覓。
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+	Arxiv歎何其多，知乎亦苦難窮盡。
 
+	花落水走了無痕，千帆過罷空餘恨。
 
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+	惟願心做金石意，要留新語在人間。
