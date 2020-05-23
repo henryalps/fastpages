@@ -73,6 +73,7 @@ for original, new in warnings:
 ## apply monkey patches
 export2html._nb2htmlfname = _nb2htmlfname
 arrs = os.listdir('_notebooks')
+print('************')
 for arr in arrs:
     if arr.endswith('ipynb'):
         nb_detach_cells('_notebooks/' + arr,dest='images/')
