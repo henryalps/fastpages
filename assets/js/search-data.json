@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "自动生成Jupyter笔记本文件",
-            "content": "## 原因 由于手动创建符合FastPages的笔记本文件比较麻烦（对文件名，格式都有要求），因此，使用代码简单生成一个脚手架文件。 ## 方法 ① 打开目录下的‘tools.ipynb’文件； ② 修改标题、描述等配置信息； ③ 运行后即可生成笔记本文件 ## tips 可以在_config.yml中排除`tools.ipynb`，避免它也生成一个页面。 .",
+            "content": "&#21407;&#22240; . 由于手动创建符合FastPages的笔记本文件比较麻烦（对文件名，格式都有要求），因此，使用代码简单生成一个脚手架文件。 . &#26041;&#27861; . ① 打开目录下的‘tools.ipynb’文件； . ② 修改标题、描述等配置信息； . ③ 运行后即可生成笔记本文件 . tips . 可以在_config.yml中排除tools.ipynb，避免它也生成一个页面。 .",
             "url": "https://henryalps.github.io/fastpages/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
             "relUrl": "/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
             "date": " • May 24, 2020"
