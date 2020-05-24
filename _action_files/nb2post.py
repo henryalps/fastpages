@@ -30,22 +30,17 @@ def _update_att_ref(line, mime, img):
     if not m: return line
     alt,title = m.groups()
     if not title: title = "TK: add title"
-    return _tmpl_img.format(title=title, id='TK: add it', mime=mime, img=img)
+    return _tmpl_img.format(title=title, id=alt, mime=mime, img=img)
 
 # Cell
 def _nb_detach_cell(cell, dest, use_img):
     att,src = cell['attachments'],cell['source']
-    print(att)
-    print(att.values())
+    # if we delete an image in notebook
+    # it would still keep an empty attachments cell
+    if len(att) == 0:
+    	return src
     mime,img = first(first(att.values()).items())
-#    ext = mime.split('/')[1]
-#    for i in range(99999):
-#        p = dest/(f'att_{i:05d}.{ext}')
-#        if not p.exists(): break
-#    img_decode = base64.b64decode(img)
-#    p.write_bytes(img_decode)
     del(cell['attachments'])
-    print('***************************')
     if use_img:  return [_update_att_ref(o,mime,img) for o in src]
     else: return [o.replace('attachment:image.png', str(p)) for o in src]
 
@@ -75,11 +70,7 @@ for original, new in warnings:
 ## apply monkey patches
 export2html._nb2htmlfname = _nb2htmlfname
 arrs = os.listdir('_notebooks')
-print('************')
 for arr in arrs:
     if arr.endswith('ipynb'):
         nb_detach_cells('_notebooks/' + arr,dest='images/')
-#        if Path('_notebooks/'+arr.replace('.ipynb', '')+'_files').is_dir():
-#            shutil.rmtree('_notebooks/'+arr.replace('.ipynb', '')+'_files')
-#        shutil.move(arr.replace('.ipynb', '')+'_files', '_notebooks/')
 export2html.notebook2html(fname='_notebooks/*.ipynb', dest='_posts/', template_file='/fastpages/fastpages.tpl')
