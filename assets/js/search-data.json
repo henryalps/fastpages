@@ -2,22 +2,22 @@
   
     
         "post0": {
-            "title": "自动生成Jupyter笔记本文件",
-            "content": "&#21407;&#22240; . 由于手动创建符合FastPages的笔记本文件比较麻烦（对文件名，格式都有要求），因此，使用代码简单生成一个脚手架文件。 . &#26041;&#27861; . ① 打开目录下的‘tools.ipynb’文件； . ② 修改标题、描述等配置信息； . ③ 运行后即可生成笔记本文件 . tips . 可以在_config.yml中排除tools.ipynb，避免它也生成一个页面。 .",
-            "url": "https://henryalps.github.io/fastpages/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
-            "relUrl": "/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
-            "date": " • May 24, 2020"
+            "title": "create a new blog!",
+            "content": "!pip install translation . ^C . from googletrans import Translator from datetime import datetime from functools import lru_cache title=&#39;自动生成Jupyter笔记本文件&#39; description=&#39;使用代码自动生成的Jupyter笔记本文件&#39; toc=&#39;true&#39; tags=&#39;,&#39;.join([&#39;jupyter&#39;]) branch=&#39;master&#39; badges=&#39;true&#39; comments=&#39;true&#39; date=datetime.today().strftime(&#39;%Y-%m-%d&#39;) @lru_cache(maxsize=10) def translate(text): return &#39;-&#39;.join(Translator().translate(text).text.split()) if len(title) &lt; 1: print(&#39;title not set!&#39;) exit() format_title = translate(title) print(format_title) import nbformat as nbf nb = nbf.v4.new_notebook() text = &quot;&quot;&quot; # {title} - toc: {toc} - branch: {branch} - badges: {badges} - comments: {comments} - categories: [{tags}] - description: {description} &quot;&quot;&quot;.format(title=title, toc=toc, branch=branch, badges=badges, comments=comments, tags=tags, description=description) print(text) nb[&#39;cells&#39;] = [nbf.v4.new_markdown_cell(text)] nbf.write(nb, &#39;{}-{}.ipynb&#39;.format(date,format_title)) . Notebook-files-automatically-generated-Jupyter # 自动生成Jupyter笔记本文件 - toc: true - branch: master - badges: true - comments: true - categories: [jupyter] - description: 使用代码自动生成的Jupyter笔记本文件 .",
+            "url": "https://henryalps.github.io/fastpages/2020/05/28/tools.html",
+            "relUrl": "/2020/05/28/tools.html",
+            "date": " • May 28, 2020"
         }
         
     
   
     
         ,"post1": {
-            "title": "create a new blog!",
-            "content": "!pip install translation . ^C . from googletrans import Translator from datetime import datetime from functools import lru_cache title=&#39;自动生成Jupyter笔记本文件&#39; description=&#39;使用代码自动生成的Jupyter笔记本文件&#39; toc=&#39;true&#39; tags=&#39;,&#39;.join([&#39;jupyter&#39;]) branch=&#39;master&#39; badges=&#39;true&#39; comments=&#39;true&#39; date=datetime.today().strftime(&#39;%Y-%m-%d&#39;) @lru_cache(maxsize=10) def translate(text): return &#39;-&#39;.join(Translator().translate(text).text.split()) if len(title) &lt; 1: print(&#39;title not set!&#39;) exit() format_title = translate(title) print(format_title) import nbformat as nbf nb = nbf.v4.new_notebook() text = &quot;&quot;&quot; # {title} - toc: {toc} - branch: {branch} - badges: {badges} - comments: {comments} - categories: [{tags}] - description: {description} &quot;&quot;&quot;.format(title=title, toc=toc, branch=branch, badges=badges, comments=comments, tags=tags, description=description) print(text) nb[&#39;cells&#39;] = [nbf.v4.new_markdown_cell(text)] nbf.write(nb, &#39;{}-{}.ipynb&#39;.format(date,format_title)) . Notebook-files-automatically-generated-Jupyter # 自动生成Jupyter笔记本文件 - toc: true - branch: master - badges: true - comments: true - categories: [jupyter] - description: 使用代码自动生成的Jupyter笔记本文件 .",
-            "url": "https://henryalps.github.io/fastpages/2020/05/23/tools.html",
-            "relUrl": "/2020/05/23/tools.html",
-            "date": " • May 23, 2020"
+            "title": "自动生成Jupyter笔记本文件",
+            "content": "&#21407;&#22240; . 由于手动创建符合FastPages的笔记本文件比较麻烦（对文件名，格式都有要求），因此，使用代码简单生成一个脚手架文件。 . &#26041;&#27861; . ① 打开目录下的‘tools.ipynb’文件； . ② 修改标题、描述等配置信息； . ③ 运行后即可生成笔记本文件 . tips . 可以在_config.yml中排除tools.ipynb，避免它也生成一个页面。 .",
+            "url": "https://henryalps.github.io/fastpages/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
+            "relUrl": "/jupyter/2020/05/24/Notebook-files-automatically-generated-Jupyter.html",
+            "date": " • May 24, 2020"
         }
         
     
