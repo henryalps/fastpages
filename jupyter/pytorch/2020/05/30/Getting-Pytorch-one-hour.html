@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pytorch一小时入门 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pytorch一小时入门" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="抄写一遍Pytorch入门代码" />
+<meta property="og:description" content="抄写一遍Pytorch入门代码" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"抄写一遍Pytorch入门代码","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html"},"@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html","headline":"Pytorch一小时入门","dateModified":"2020-05-30T00:00:00-05:00","datePublished":"2020-05-30T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pytorch一小时入门 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pytorch一小时入门" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="抄写一遍Pytorch入门代码" />
+<meta property="og:description" content="抄写一遍Pytorch入门代码" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"抄写一遍Pytorch入门代码","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html"},"@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html","headline":"Pytorch一小时入门","dateModified":"2020-05-30T00:00:00-05:00","datePublished":"2020-05-30T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastpages/">Henrys&#39; Lab</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastpages/about/">關於</a><a class="page-link" href="/fastpages/search/">Search</a><a class="page-link" href="/fastpages/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Pytorch一小时入门</h1><p class="page-description">抄写一遍Pytorch入门代码</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-05-30T00:00:00-05:00" itemprop="datePublished">
+        May 30, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastpages/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages/categories/#pytorch">pytorch</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/henryalps/fastpages/tree/master/_notebooks/2020-05-30-Getting-Pytorch-one-hour.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastpages/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/henryalps/fastpages/master?filepath=_notebooks%2F2020-05-30-Getting-Pytorch-one-hour.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/henryalps/fastpages/blob/master/_notebooks/2020-05-30-Getting-Pytorch-one-hour.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#理解PyTorch的Tensor库">理解PyTorch的Tensor库 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Tesnsor的定义">Tesnsor的定义 </a></li>
+<li class="toc-entry toc-h2"><a href="#Tensor操作">Tensor操作 </a></li>
+<li class="toc-entry toc-h2"><a href="#Numpy桥接---在tensor与numpy数组之间互相转换">Numpy桥接 - 在tensor与numpy数组之间互相转换 </a></li>
+<li class="toc-entry toc-h2"><a href="#GPU上的tensor">GPU上的tensor </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Autograd自动求导的应用">Autograd自动求导的应用 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#tensor">tensor </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-05-30-Getting-Pytorch-one-hour.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>更新记录：</p>
+<blockquote>
+<p>20/05/31(I) 完成前两节（30min）的内容</p>
+</blockquote>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>学习了<a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">DEEP LEARNING WITH PYTORCH: A 60 MINUTE BLITZ</a>，将过程记录在此处。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="data:image/png;base64,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" alt="TK: add title">
+    
+    
+      <figcaption>TK: add title</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>1.理解PyTorch的Tensor库</li>
+<li>2.Autograd自动求导的应用</li>
+<li>3.构建神经网络</li>
+<li>4.一个实际的例子</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="理解PyTorch的Tensor库">
+<a class="anchor" href="#%E7%90%86%E8%A7%A3PyTorch%E7%9A%84Tensor%E5%BA%93" aria-hidden="true"><span class="octicon octicon-link"></span></a>理解PyTorch的Tensor库<a class="anchor-link" href="#%E7%90%86%E8%A7%A3PyTorch%E7%9A%84Tensor%E5%BA%93"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tesnsor的定义">
+<a class="anchor" href="#Tesnsor%E7%9A%84%E5%AE%9A%E4%B9%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tesnsor的定义<a class="anchor-link" href="#Tesnsor%E7%9A%84%E5%AE%9A%E4%B9%89"> </a>
+</h2>
+<p>Tensors和NumPy的ndarray结构很像，区别是Tensor可以用于GPU计算。</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># check the GPU support</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['BFloat16Storage',
+ 'BFloat16Tensor',
+ 'BoolStorage',
+ 'BoolTensor',
+ 'ByteStorage',
+ 'ByteTensor',
+ 'CharStorage',
+ 'CharTensor',
+ 'CudaError',
+ 'DeferredCudaCallError',
+ 'DoubleStorage',
+ 'DoubleTensor',
+ 'Event',
+ 'FloatStorage',
+ 'FloatTensor',
+ 'HalfStorage',
+ 'HalfTensor',
+ 'IntStorage',
+ 'IntTensor',
+ 'LongStorage',
+ 'LongTensor',
+ 'PIPE',
+ 'Popen',
+ 'ShortStorage',
+ 'ShortTensor',
+ 'Stream',
+ '_CudaBase',
+ '_StorageBase',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__path__',
+ '__spec__',
+ '_after_fork',
+ '_check_capability',
+ '_check_driver',
+ '_cudart',
+ '_dummy_type',
+ '_free_mutex',
+ '_get_device_index',
+ '_host_allocator',
+ '_in_bad_fork',
+ '_initialized',
+ '_lazy_call',
+ '_lazy_init',
+ '_lazy_new',
+ '_load_cudart',
+ '_original_pid',
+ '_queued_calls',
+ '_register_after_fork',
+ '_sleep',
+ '_utils',
+ 'check_error',
+ 'comm',
+ 'contextlib',
+ 'ctypes',
+ 'cudaStatus',
+ 'cudart',
+ 'current_blas_handle',
+ 'current_device',
+ 'current_stream',
+ 'default_stream',
+ 'device',
+ 'device_count',
+ 'device_of',
+ 'empty_cache',
+ 'find_cuda_windows_lib',
+ 'get_device_capability',
+ 'get_device_name',
+ 'get_device_properties',
+ 'get_rng_state',
+ 'get_rng_state_all',
+ 'init',
+ 'initial_seed',
+ 'ipc_collect',
+ 'is_available',
+ 'manual_seed',
+ 'manual_seed_all',
+ 'max_memory_allocated',
+ 'max_memory_cached',
+ 'memory_allocated',
+ 'memory_cached',
+ 'nccl',
+ 'nvtx',
+ 'os',
+ 'platform',
+ 'profiler',
+ 'raise_from',
+ 'random',
+ 'reset_max_memory_allocated',
+ 'reset_max_memory_cached',
+ 'seed',
+ 'seed_all',
+ 'set_device',
+ 'set_rng_state',
+ 'set_rng_state_all',
+ 'sparse',
+ 'stream',
+ 'streams',
+ 'synchronize',
+ 'sys',
+ 'torch',
+ 'traceback',
+ 'warnings']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>创建一个5x3张量，不初始化</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[ 8.4078e-45,  0.0000e+00,  2.6136e-28],
+        [ 5.5772e-43, -1.3120e-30,  4.5915e-41],
+        [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
+        [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
+        [-1.3120e-30,  4.5915e-41,  0.0000e+00]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>???这里的表现和页面不一样，预期应该是全0才对</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>创建一个随机初始化张量</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[0.3783, 0.4491, 0.0897],
+        [0.2913, 0.1618, 0.6047],
+        [0.2112, 0.3987, 0.1202],
+        [0.8236, 0.2970, 0.4896],
+        [0.4792, 0.2471, 0.6751]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>创建一个填0的long型张量</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>从数据中直接创建一个张量</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([5.5000, 3.0000])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>根据一个已有张量创建张量</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 创建一个类型变为double型的全1张量</span>
+<span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]], dtype=torch.float64)
+tensor([[ 0.4722, -0.4380, -1.0941],
+        [ 0.6054,  0.6555, -1.1304],
+        [-1.1721,  1.3889,  0.3657],
+        [-1.6273, -0.0502,  0.8097],
+        [ 1.3560,  0.1341,  1.6279]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>torch.size实际是一个tuple</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>torch.Size([5, 3])
+5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tensor操作">
+<a class="anchor" href="#Tensor%E6%93%8D%E4%BD%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tensor操作<a class="anchor-link" href="#Tensor%E6%93%8D%E4%BD%9C"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>加法之两种符号类型</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 类型1- 直接用加号</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># 类型2- 使用函数add</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]])
+tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>？？？为何要用两种符号表示呢</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>加法之指定结果tensor</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>加法之原位相加</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>注意到所有原位运算都是在函数名后边加一个下划线</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>使用类似numpy的范围写法取tensor的部分值</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 打印x的第一列</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># 打印x的第一行</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([1., 1., 1., 1., 1.])
+tensor([1., 1., 1.])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>改变tensor的维度</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># 只指定每行的元素数量，就可以计算出变换后的形状</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[ 1.7866,  1.8163, -0.4897,  0.6796],
+        [-1.1594,  1.8653, -0.4756, -0.8084],
+        [ 0.5253,  1.8867,  1.2337, -0.1705],
+        [ 0.6688,  0.0531, -0.9582, -0.4612]]) tensor([ 1.7866,  1.8163, -0.4897,  0.6796, -1.1594,  1.8653, -0.4756, -0.8084,
+         0.5253,  1.8867,  1.2337, -0.1705,  0.6688,  0.0531, -0.9582, -0.4612]) tensor([[ 1.7866,  1.8163],
+        [-0.4897,  0.6796],
+        [-1.1594,  1.8653],
+        [-0.4756, -0.8084],
+        [ 0.5253,  1.8867],
+        [ 1.2337, -0.1705],
+        [ 0.6688,  0.0531],
+        [-0.9582, -0.4612]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>tensor的操作还有很多，此处实际没有完全列举</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Numpy桥接---在tensor与numpy数组之间互相转换">
+<a class="anchor" href="#Numpy%E6%A1%A5%E6%8E%A5---%E5%9C%A8tensor%E4%B8%8Enumpy%E6%95%B0%E7%BB%84%E4%B9%8B%E9%97%B4%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Numpy桥接 - 在tensor与numpy数组之间互相转换<a class="anchor-link" href="#Numpy%E6%A1%A5%E6%8E%A5---%E5%9C%A8tensor%E4%B8%8Enumpy%E6%95%B0%E7%BB%84%E4%B9%8B%E9%97%B4%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>numpy数组和tensor共享内存：这意味着对任何一个变量的改变都将同步到另一个上。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>转化tensor为一个ndarray</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([1., 1., 1., 1., 1.]) [1. 1. 1. 1. 1.]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>对tensor的改变将会反映到ndarray上</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2. 2. 2. 2. 2.]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>对ndarray的改变将会反映到tensor上</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">+=</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([3., 3., 3., 3., 3.])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>将ndarray转换为tensor</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#注意此处的变量命名</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2. 2. 2. 2. 2.]
+tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GPU上的tensor">
+<a class="anchor" href="#GPU%E4%B8%8A%E7%9A%84tensor" aria-hidden="true"><span class="octicon octicon-link"></span></a>GPU上的tensor<a class="anchor-link" href="#GPU%E4%B8%8A%E7%9A%84tensor"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>使用to()方法将tensor迁移到其它设备</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[ 2.7866,  2.8163,  0.5103,  1.6796],
+        [-0.1594,  2.8653,  0.5244,  0.1916],
+        [ 1.5253,  2.8867,  2.2337,  0.8295],
+        [ 1.6688,  1.0531,  0.0418,  0.5388]], device='cuda:0')
+tensor([[2, 2, 0, 1],
+        [0, 2, 0, 0],
+        [1, 2, 2, 0],
+        [1, 1, 0, 0]], dtype=torch.int32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Autograd自动求导的应用">
+<a class="anchor" href="#Autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E7%9A%84%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autograd自动求导的应用<a class="anchor-link" href="#Autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E7%9A%84%E5%BA%94%E7%94%A8"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>pytorch中神经网络的核心模块就是<code>autograd</code>包，我们简单地了解一下这个包，其后就可以开始训练我们的第一个神经网络了。</p>
+<p><code>autograd</code>包可以对所有的tensor操作进行自动差分（？？？如何自定义运算符）。它是一个define-by-run的框架，也就是你的反向传播是由代码运行方式所决定的，每一个操作都会有不同。</p>
+<p>我们用更简单的方式和例子进行解释。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="tensor">
+<a class="anchor" href="#tensor" aria-hidden="true"><span class="octicon octicon-link"></span></a>tensor<a class="anchor-link" href="#tensor"> </a>
+</h2>
+<p><code>torch.Tensor</code>是这个包的核心。如果你将其属性<code>.requires_grad</code>设为True，它将追踪其上的所有操作。当你完成计算后，可以调用<code>.backward()</code>方法以自动计算所有导数。这个tensor的导数将由<code>.grad</code>参数所体现。</p>
+<p>为了结束对一个tensor求导的操作，你可以用<code>.detach</code>方法将它从计算历史中移除，以避免之后它又被继续求导。</p>
+<p>为了避免对tensor求导占用内存，你可以将代码块用<code>with torch.no_grad()</code>包裹起来。这对模型评估尤其有用，因为其中可能存在设置了<code>require_grad=True</code>的参数，但我们却不需要求导数。</p>
+<p><code>Function</code>类是另外一个非常常用的类。</p>
+<p><code>Tensor</code>和<code>Function</code>共同作用以构建一个无环图，该图对完整的计算历史进行编码。每个tensor都有一个<code>.grad_fn</code>属性，其中保存了创建这个tensor的<code>Function</code>对象。（用户自己创建的tensor则没有这个属性）</p>
+<p>如果你想计算导数，你可以调用tensor的<code>.backward()</code>方法。如果tensor是一个标量（即包含单个元素），你不需要为<code>backward()</code>指定任何参数。但如果它有多于一个元素，则你必需为它指定<code>gradient</code>参数，其形状与该tensor对应。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>创建一个tensor并设定<code>require_grad</code>为True以追踪其上的计算：</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[1., 1.],
+        [1., 1.]], requires_grad=True)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>tensor运算</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[3., 3.],
+        [3., 3.]], grad_fn=&lt;AddBackward0&gt;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>更多的tensor运算</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[27., 27.],
+        [27., 27.]], grad_fn=&lt;MulBackward0&gt;) tensor(27., grad_fn=&lt;MeanBackward0&gt;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><code>.requires_grad_()</code>可用于替换一个已有tensor的<code>require_grad</code>标志位。输入标志位默认为<code>False</code>。</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span><span class="o">=</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+<span class="n">b</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+None
+True
+None
+&lt;SumBackward0 object at 0x00000240968298D0&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>进行反向传播。由于<code>out</code>是一个标量，所以无需传入参数</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[4.5000, 4.5000],
+        [4.5000, 4.5000]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>如果我们将out定义为$o$,那么我们将有$o=\frac{1}{4}\sum_{i}3(x_i+2)^2$,此时$\frac{\partial o}{\partial x_i}=\frac{3}{2}(x_i+2)$,因此$\frac{\partial o}{\partial x_i} \mid_{x_i=1}=4.5$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>数学上来说，如果你有一个因自变量都为向量的函数$\vec{y}=f(\vec{x})$,那么$\vec{y}$对$\vec{x}$的导数为一个雅可比矩阵：</p>
+<p>$J=\left(\begin{array}{ccc}
+\frac{\partial y_{1}}{\partial x_{1}} &amp; \cdots &amp; \frac{\partial y_{1}}{\partial x_{n}} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial y_{m}}{\partial x_{1}} &amp; \cdots &amp; \frac{\partial y_{m}}{\partial x_{n}}
+\end{array}\right)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>一般地，<code>torch.autograd</code>是一个用于计算向量-雅可比行列式乘积的工具。也就是说，给定任何向量$v=(v_1 v_2 ... v_m)^T$，如果$v$刚好是标量函数$l=g(\vec{y})$的导数，也就是说$v=\left(\frac{\partial l}{\partial y_{1}} \cdots \frac{\partial l}{\partial y_{m}}\right)^{T}$，那么根据链式法则有向量与雅克比行列式之积为
+$J^{T} \cdot v=\left(\begin{array}{ccc}
+\frac{\partial y_{1}}{\partial x_{1}} &amp; \cdots &amp; \frac{\partial y_{m}}{\partial x_{1}} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial y_{1}}{\partial x_{n}} &amp; \cdots &amp; \frac{\partial y_{m}}{\partial x_{n}}
+\end{array}\right)\left(\begin{array}{c}
+\frac{\partial l}{\partial y_{1}} \\
+\frac{\partial l}{\partial y_{m}}
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\partial l}{\partial x_{1}} \\
+\frac{\partial l}{\partial x_{n}}
+\end{array}\right)$</p>
+<p>向量与雅克比行列式之积的这种性质使得，将额外的导数引入输出不为常量的模型非常方便。
+现在我们看一下向量-雅克比积的一个例子：</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="k">while</span> <span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">:</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="o">*</span><span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([-800.3267,  194.5804,  608.2095], grad_fn=&lt;MulBackward0&gt;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在这个例子中<code>y</code>不再是一个标量了。<code>torch.autograd</code>不能直接计算完整的雅克比行列式，但如果我们只想要向量-雅克比行列式之积的话，就简单将向量传入<code>backward</code>参数即可：</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([5.1200e+01, 5.1200e+02, 5.1200e-02])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>关于上面这一段<a href="https://zhuanlan.zhihu.com/p/29923090">知乎链接</a>讲的比较清楚，主要动机是不允许tensor对tensor求导，只允许scalar对tensor求导。</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>如果想对已经设置<code>requires_grad=True</code>的张量停止自动求导，有两种方式：</p>
+<p>1.使用<code>with torch.no_grad()</code>包裹</p>
+<p>2.使用<code>.detach()</code>获取一个新的不需导数的张量</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+True
+False
+True
+False
+tensor(True)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="henryalps/fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastpages/jupyter/pytorch/2020/05/30/Getting-Pytorch-one-hour.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastpages/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastpages/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastpages/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Practise, record, knowledge</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
