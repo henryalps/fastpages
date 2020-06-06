@@ -248,6 +248,9 @@ jekyll_1     | /usr/local/bundle/ruby/2.6.0/gems/jekyll-twitter-plugin-2.1.0/lib
 <p>jupyter lab启动后直接打开notebook文件夹即可</p>
 </li>
 </ul>
+<p>(5) Jekyll build very slow - Jekyll Rendering Liquid非常缓慢</p>
+<p>如果你在文章中包含了大量的base64编码图片，会造成Jekyll Rendering特别慢（超过1h）</p>
+<p>解决方案 ：预处理的时候将base64编码保存为图片，再链接到文章中即可。参考<a href="https://github.com/henryalps/fastpages/blob/master/_action_files/nb2post.py">代码</a>方式更新你的<code>nb2post.py</code>文件。</p>
 <h3 id="总结">
 <a class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span class="octicon octicon-link"></span></a>总结<a class="anchor-link" href="#%E6%80%BB%E7%BB%93"> </a>
 </h3>
