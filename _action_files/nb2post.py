@@ -7,6 +7,7 @@ from fast_template import rename_for_jekyll
 import shutil
 import json
 import base64
+import hashlib
 warnings = set()
 
 # Cell
@@ -38,8 +39,9 @@ def _update_att_ref_local(line, mime, img):
     if not m: return line
     alt,title = m.groups()
     if not title: title = ""
-    print(img[-8:], mime.split('/')[1])
-    title = "{}.{}".format(img[-11:-1], mime.split('/')[1])
+    img_hash = str(int(hashlib.sha1(img).hexdigest(), 16) % (10 ** 10))
+    print(img_hash, mime.split('/')[1])
+    title = "{}.{}".format(img_hash, mime.split('/')[1])
     print(title)
     with open('_notebooks/' + title, "wb") as fh:
         fh.write(base64.decodebytes(img.encode()))
