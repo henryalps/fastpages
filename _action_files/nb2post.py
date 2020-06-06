@@ -40,7 +40,7 @@ def _update_att_ref_local(line, mime, img):
     if not title: title = ""
     print(img, mime)
     print(img[-8:], mime.split('/')[1])
-    title = "images/{}.{}".format(img[-8:], mime.split('\/')[1])
+    title = "images/{}.{}".format(img[-8:], mime.split('/')[1])
     print(title)
     with open(title, "wb") as fh:
         fh.write(base64.decodebytes(img))
