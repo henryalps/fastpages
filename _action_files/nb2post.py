@@ -40,10 +40,10 @@ def _update_att_ref_local(line, mime, img):
     if not title: title = ""
     print(img, mime)
     print(img[-8:], mime.split('/')[1])
-    title = "images/{}.{}".format(img[-8:], mime.split('\/')[1])
+    title = "{}.{}".format(img[-11:-1], mime.split('/')[1])
     print(title)
-    with open(title, "wb") as fh:
-        fh.write(base64.decodebytes(img))
+    with open('_notebooks/' + title, "wb") as fh:
+        fh.write(base64.decodebytes(img.encode()))
     return _local_img.format(title=title, id=alt, mime=mime, src=title)
 
 # Cell
