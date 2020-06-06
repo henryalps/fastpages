@@ -39,7 +39,7 @@ def _update_att_ref_local(line, mime, img):
     if not m: return line
     alt,title = m.groups()
     if not title: title = ""
-    img_hash = str(int(hashlib.sha1(img).hexdigest(), 16) % (10 ** 10))
+    img_hash = str(hashlib.sha256(img.encode('utf-8')).hexdigest(), 16) % (10 ** 10))
     print(img_hash, mime.split('/')[1])
     title = "{}.{}".format(img_hash, mime.split('/')[1])
     print(title)
