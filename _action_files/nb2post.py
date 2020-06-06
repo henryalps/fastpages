@@ -18,6 +18,7 @@ except: pass # Only required for _update_att_ref
 
 # Cell
 _tmpl_img = '<img alt="{title}" caption="{title}" id="{id}" src="data:{mime};base64,{img}">'
+_local_img = '<img alt="{title}" caption="{title}" id="{id}" src="{src}">'
 
 # Cell
 def first(x):
@@ -32,6 +33,19 @@ def _update_att_ref(line, mime, img):
     if not title: title = "TK: add title"
     return _tmpl_img.format(title=title, id=alt, mime=mime, img=img)
 
+def _update_att_ref_local(line, mime, img):
+    m = _re_att_ref.match(line)
+    if not m: return line
+    alt,title = m.groups()
+    if not title: title = ""
+    print(img, mime)
+    print(img[-8:], mime.split('\/')[1])
+    title = "images/{}.{}".format(img[-8:], mime.split('\/')[1])
+    print(title)
+    with open(title, "wb") as fh:
+        fh.write(base64.decodebytes(img))
+    return _local_img.format(title=title, id=alt, mime=mime, src=title)
+
 # Cell
 def _nb_detach_cell(cell, dest, use_img):
     att,src = cell['attachments'],cell['source']
@@ -41,7 +55,7 @@ def _nb_detach_cell(cell, dest, use_img):
     	return src
     mime,img = first(first(att.values()).items())
     del(cell['attachments'])
-    if use_img:  return [_update_att_ref(o,mime,img) for o in src]
+    if use_img:  return [_update_att_ref_local(o,mime,img) for o in src]
     else: return [o.replace('attachment:image.png', str(p)) for o in src]
 
 # Cell
