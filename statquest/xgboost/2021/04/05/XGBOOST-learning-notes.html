@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>xgBoost学习笔记 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="xgBoost学习笔记" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录" />
+<meta property="og:description" content="学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-05T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录","@type":"BlogPosting","headline":"xgBoost学习笔记","dateModified":"2021-04-05T00:00:00-05:00","datePublished":"2021-04-05T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>xgBoost学习笔记 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="xgBoost学习笔记" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录" />
+<meta property="og:description" content="学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-05T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录","@type":"BlogPosting","headline":"xgBoost学习笔记","dateModified":"2021-04-05T00:00:00-05:00","datePublished":"2021-04-05T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastpages/">Henrys&#39; Lab</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastpages/about/">關於</a><a class="page-link" href="/fastpages/search/">Search</a><a class="page-link" href="/fastpages/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">xgBoost学习笔记</h1><p class="page-description">学习StatQuest的https://www.youtube.com/watch?v=GrJP9FLV3FE 教程记录</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-04-05T00:00:00-05:00" itemprop="datePublished">
+        Apr 5, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastpages/categories/#StatQuest">StatQuest</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages/categories/#xgBoost">xgBoost</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/henryalps/fastpages/tree/master/_notebooks/2020-05-04-fastpages.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastpages/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/henryalps/fastpages/master?filepath=_notebooks%2F2020-05-04-fastpages.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/henryalps/fastpages/blob/master/_notebooks/2020-05-04-fastpages.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h3"><a href="#背景">背景 </a></li>
+<li class="toc-entry toc-h3"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h3"><a href="#混淆矩阵(Confusion-Matrix)">混淆矩阵(Confusion Matrix) </a></li>
+<li class="toc-entry toc-h3"><a href="#Import-the-data">Import the data </a></li>
+<li class="toc-entry toc-h3"><a href="#Missing-data">Missing data </a></li>
+<li class="toc-entry toc-h3"><a href="#xgBoost-data-format">xgBoost data format </a></li>
+<li class="toc-entry toc-h3"><a href="#build-xgBoost-model">build xgBoost model </a></li>
+<li class="toc-entry toc-h3"><a href="#optimize-xgBoost-model">optimize xgBoost model </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-04-05-XGBOOST-learning-notes.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="背景">
+<a class="anchor" href="#%E8%83%8C%E6%99%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>背景<a class="anchor-link" href="#%E8%83%8C%E6%99%AF"> </a>
+</h3>
+<p>来源: <a href="https://www.youtube.com/watch?v=GrJP9FLV3FE">XGBoost in Python from Start to Finish</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h3>
+<ul>
+<li>importing data from a file</li>
+<li>missing data</li>
+<li>xgBoost data format</li>
+<li>building a model</li>
+<li>optimizing a model</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="混淆矩阵(Confusion-Matrix)">
+<a class="anchor" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5(Confusion-Matrix)" aria-hidden="true"><span class="octicon octicon-link"></span></a>混淆矩阵(Confusion Matrix)<a class="anchor-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5(Confusion-Matrix)"> </a>
+</h3>
+<ul>
+<li>rows: Predict result</li>
+<li>columns: Actual result</li>
+<li>outputs: TP/TN/FP/FN</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># install needed modules</span>
+<span class="o">!</span>pip install pandas numpy sklearn xgboost fsspec matplotlib ipympl
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgboost</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">balanced_accuracy_score</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">plot_confusion_matrix</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Import-the-data">
+<a class="anchor" href="#Import-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import the data<a class="anchor-link" href="#Import-the-data"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># download the data</span>
+<span class="o">!</span>wget <span class="s1">'https://raw.githubusercontent.com/bhargitay/telco_customer_churn/master/data/WA_Fn-UseC_-Telco-Customer-Churn.csv'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># read by pandas</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'G://temp//WA_Fn-UseC_-Telco-Customer-Churn.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># show datafram</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.5</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># drop unwanted column</span>
+<span class="c1"># axis=1 -&gt; column inplace -&gt; update the dataframe</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'customerID'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find those only contains unique value</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['Female', 'Male'], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove space from column names and values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'MultipleLines'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.5</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove all space from data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Missing-data">
+<a class="anchor" href="#Missing-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Missing data<a class="anchor-link" href="#Missing-data"> </a>
+</h3>
+<p>Missing data就是类似NA, 或者空白字符的字段. 在xgBoost中, Missing data应该置为0.</p>
+<p>为查找Missing data, 使用<code>dtypes</code>方法:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges         object
+Churn                object
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>对所有类型为object的列, 逐项检查是否合理.</p>
+<p>找到不合理的列及可能有问题的值后, 找到这些值的位置:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find location</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>488</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Two year</td>
+      <td>Yes</td>
+      <td>Bank transfer (automatic)</td>
+      <td>52.55</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>753</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>20.25</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>936</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>80.85</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1082</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>25.75</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1340</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Credit card (automatic)</td>
+      <td>56.05</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3331</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>19.85</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3826</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>25.35</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4380</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>20.00</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>5218</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>No internet service</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>19.70</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>6670</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Two year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>73.35</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>6754</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Two year</td>
+      <td>Yes</td>
+      <td>Bank transfer (automatic)</td>
+      <td>61.90</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># set to 0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">),</span> <span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges        float64
+Churn                object
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="xgBoost-data-format">
+<a class="anchor" href="#xgBoost-data-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>xgBoost data format<a class="anchor-link" href="#xgBoost-data-format"> </a>
+</h3>
+<p>首先将特征和估计值分开:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Churn'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic_check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One_year</td>
+      <td>No</td>
+      <td>Mailed_check</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed_check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No_phone_service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One_year</td>
+      <td>No</td>
+      <td>Bank_transfer_(automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber_optic</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic_check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Churn'</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0     No
+1     No
+2    Yes
+3     No
+4    Yes
+Name: Churn, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>其次, 将Category特征转化为One-hot编码. One-hot编码的原因是它能保证所有目标值互相之间的距离相同, 从而避免模型不必要地拉近不同预测值的距离. 用<code>get_dummies</code>转化one-hot编码.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_encoded</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="s1">'Yes'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_encoded</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">,</span><span class="s1">'Partner'</span><span class="p">,</span><span class="s1">'Dependents'</span><span class="p">,</span><span class="s1">'PhoneService'</span><span class="p">,</span><span class="s1">'MultipleLines'</span><span class="p">,</span><span class="s1">'InternetService'</span><span class="p">,</span><span class="s1">'OnlineSecurity'</span><span class="p">,</span><span class="s1">'OnlineBackup'</span><span class="p">,</span><span class="s1">'DeviceProtection'</span><span class="p">,</span><span class="s1">'TechSupport'</span><span class="p">,</span><span class="s1">'StreamingTV'</span><span class="p">,</span><span class="s1">'StreamingMovies'</span><span class="p">,</span><span class="s1">'Contract'</span><span class="p">,</span><span class="s1">'PaperlessBilling'</span><span class="p">,</span><span class="s1">'PaymentMethod'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_encoded</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SeniorCitizen</th>
+      <th>tenure</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>gender_Female</th>
+      <th>gender_Male</th>
+      <th>Partner_No</th>
+      <th>Partner_Yes</th>
+      <th>Dependents_No</th>
+      <th>Dependents_Yes</th>
+      <th>...</th>
+      <th>StreamingMovies_Yes</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One_year</th>
+      <th>Contract_Two_year</th>
+      <th>PaperlessBilling_No</th>
+      <th>PaperlessBilling_Yes</th>
+      <th>PaymentMethod_Bank_transfer_(automatic)</th>
+      <th>PaymentMethod_Credit_card_(automatic)</th>
+      <th>PaymentMethod_Electronic_check</th>
+      <th>PaymentMethod_Mailed_check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>34</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>45</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>2</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 45 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_encoded</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>tips:默认值设置为0在one-hot编码中的优势 - 默认值为0会将所有位置的编码都设置为0, 从而使得0不会干扰到其它有实际值的项目.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="build-xgBoost-model">
+<a class="anchor" href="#build-xgBoost-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>build xgBoost model<a class="anchor-link" href="#build-xgBoost-model"> </a>
+</h3>
+<p>首先, 将数据划分为训练集 和 测试集. 划分集合时, 需要注意按照目标预测值的比例来进行划分, 保证划分后的比例与划分前尽量一致:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_encoded</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5282 1761
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>接下来开始构建xgBoost模型.</p>
+<ul>
+<li>early stop: 如果10棵树都没有产生优化效果, 则退出</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf_xgb</span> <span class="o">=</span> <span class="n">xgboost</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">'binary:logistic'</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">clf_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+            <span class="n">eval_metric</span><span class="o">=</span><span class="s1">'aucpr'</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\henryalps\Anaconda3\envs\xeus-python\lib\site-packages\xgboost\sklearn.py:888: UserWarning: The use of label encoder in XGBClassifier is deprecated and will be removed in a future release. To remove this warning, do the following: 1) Pass option use_label_encoder=False when constructing XGBClassifier object; and 2) Encode your labels (y) as integers starting with 0, i.e. 0, 1, 2, ..., [num_class - 1].
+  warnings.warn(label_encoder_deprecation_msg, UserWarning)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0]	validation_0-aucpr:0.63160
+[1]	validation_0-aucpr:0.64538
+[2]	validation_0-aucpr:0.64402
+[3]	validation_0-aucpr:0.64429
+[4]	validation_0-aucpr:0.63866
+[5]	validation_0-aucpr:0.63419
+[6]	validation_0-aucpr:0.63912
+[7]	validation_0-aucpr:0.63787
+[8]	validation_0-aucpr:0.63779
+[9]	validation_0-aucpr:0.63894
+[10]	validation_0-aucpr:0.63680
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=1, gamma=0, gpu_id=-1,
+              importance_type='gain', interaction_constraints='',
+              learning_rate=0.300000012, max_delta_step=0, max_depth=6,
+              min_child_weight=1, missing=None, monotone_constraints='()',
+              n_estimators=100, n_jobs=8, num_parallel_tree=1, random_state=42,
+              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=42,
+              subsample=1, tree_method='exact', validate_parameters=1,
+              verbosity=None)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>最后绘制confusion matrix:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">clf_xgb</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">values_format</span><span class="o">=</span><span class="s1">'d'</span><span class="p">,</span> <span class="n">display_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Did not leave'</span><span class="p">,</span><span class="s1">'left'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x27d32087f70&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="optimize-xgBoost-model">
+<a class="anchor" href="#optimize-xgBoost-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>optimize xgBoost model<a class="anchor-link" href="#optimize-xgBoost-model"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>模型对left的分类并不好, 但是left的影响更大, 所以需要对模型进行优化. 优化可以通过结合<code>Cross validation</code>和<code>GridSearch</code>两种方法来达成.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># GridSearch</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'max_depth'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.05</span><span class="p">],</span>
+    <span class="s1">'gamma'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="s1">'reg_lambda'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span>
+    <span class="s1">'scale_pos_weight'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># 使用subsample参数, 可以指定每棵树对应的样本数量占整体的比重</span>
+<span class="c1"># 使用colsample_bytree, 可以指定每棵树选取多少特征</span>
+<span class="c1"># 使用cv, 可指定cross validation是多少折</span>
+<span class="n">optimal_params</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">xgboost</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">'binary:logistic'</span><span class="p">,</span>
+                                                             <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+                                                             <span class="n">subsample</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                                                             <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+                             <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
+                             <span class="n">scoring</span><span class="o">=</span><span class="s1">'roc_auc'</span><span class="p">,</span>
+                             <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="henryalps/fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastpages/statquest/xgboost/2021/04/05/XGBOOST-learning-notes.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastpages/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastpages/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastpages/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Practise, Record, Knowledge</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
