@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>图示各种Tensor操作 | Henrys’ Lab</title>
+<title>分享一些整理的资料 | Henrys’ Lab</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="图示各种Tensor操作" />
+<meta property="og:title" content="分享一些整理的资料" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。" />
-<meta property="og:description" content="实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。" />
-<link rel="canonical" href="https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html" />
-<meta property="og:url" content="https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html" />
+<meta name="description" content="整合了网上的零散资料后, 在该页面分享出来" />
+<meta property="og:description" content="整合了网上的零散资料后, 在该页面分享出来" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html" />
 <meta property="og:site_name" content="Henrys’ Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-05-04T00:00:00-05:00" />
+<meta property="article:published_time" content="2021-06-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。","@type":"BlogPosting","headline":"图示各种Tensor操作","dateModified":"2020-05-04T00:00:00-05:00","datePublished":"2020-05-04T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html"},"url":"https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html","@context":"https://schema.org"}</script>
+{"description":"整合了网上的零散资料后, 在该页面分享出来","@type":"BlogPosting","headline":"分享一些整理的资料","dateModified":"2021-06-27T00:00:00-05:00","datePublished":"2021-06-27T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html"},"url":"https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -24,19 +24,19 @@
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
 
 <link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>图示各种Tensor操作 | Henrys’ Lab</title>
+<title>分享一些整理的资料 | Henrys’ Lab</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="图示各种Tensor操作" />
+<meta property="og:title" content="分享一些整理的资料" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。" />
-<meta property="og:description" content="实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。" />
-<link rel="canonical" href="https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html" />
-<meta property="og:url" content="https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html" />
+<meta name="description" content="整合了网上的零散资料后, 在该页面分享出来" />
+<meta property="og:description" content="整合了网上的零散资料后, 在该页面分享出来" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html" />
 <meta property="og:site_name" content="Henrys’ Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-05-04T00:00:00-05:00" />
+<meta property="article:published_time" content="2021-06-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。","@type":"BlogPosting","headline":"图示各种Tensor操作","dateModified":"2020-05-04T00:00:00-05:00","datePublished":"2020-05-04T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html"},"url":"https://henryalps.github.io/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html","@context":"https://schema.org"}</script>
+{"description":"整合了网上的零散资料后, 在该页面分享出来","@type":"BlogPosting","headline":"分享一些整理的资料","dateModified":"2021-06-27T00:00:00-05:00","datePublished":"2021-06-27T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html"},"url":"https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -113,8 +113,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">图示各种Tensor操作</h1><p class="page-description">实践中，因为对Tensor操作不熟悉，我经常出现代码错误，或者在改代码时漫无头绪。这里梳理总结各种常见的Tensor变换操作。</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-05-04T00:00:00-05:00" itemprop="datePublished">
-        May 4, 2020
+    <h1 class="post-title p-name" itemprop="name headline">分享一些整理的资料</h1><p class="page-description">整合了网上的零散资料后, 在该页面分享出来</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-27T00:00:00-05:00" itemprop="datePublished">
+        Jun 27, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -126,10 +126,10 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/fastpages/categories/#tensorflow">tensorflow</a>
+        <a class="category-tags-link" href="/fastpages/categories/#share">share</a>
         &nbsp;
       
-        <a class="category-tags-link" href="/fastpages/categories/#jupyter">jupyter</a>
+        <a class="category-tags-link" href="/fastpages/categories/#files">files</a>
         
       
       </p>
@@ -161,12 +161,12 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#Tensor的形状">Tensor的形状 </a></li>
+<li class="toc-entry toc-h4"><a href="#李耳《道德经》赵孟頫楷书版本">李耳《道德经》赵孟頫楷书版本 </a></li>
 </ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-05-04-tensor-operation.ipynb
+# file to edit: _notebooks/2021-06-27-To-share-some-of-information.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -181,19 +181,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tensor的形状">
-<a class="anchor" href="#Tensor%E7%9A%84%E5%BD%A2%E7%8A%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tensor的形状<a class="anchor-link" href="#Tensor%E7%9A%84%E5%BD%A2%E7%8A%B6"> </a>
-</h3>
-<ul>
-<li>Tensor是什么？</li>
-</ul>
-<p>机器学习中的定义下，Tensor是数据的容器。我将其理解为每个元素大小都相等的N维数组。
-但在严格的数学定义中，Tensor又不仅仅是数据的容器，Tensor具备几何意义，其中的每个元素实际上表示了某个基向量的权重。</p>
-<ul>
-<li>为什么要用Tensor?</li>
-</ul>
-<p>机器学习中，使用Tensor纯粹是需要定义这样一种数据类型--换个名字都可以。
-根据<a href="https://www.youtube.com/watch?v=f5liqUk0ZTw">某YouTude视频</a>，由于Tensor表征了不同基向量之间的组合。这意味着即使空间发生变换（不涉及升降维），Tensor中存储的信息也不会发生改变，所以Tensor实际是对信息的一种最精简的表示（如果对空间进行变换，基向量互相垂直的关系是否会发生改变？）</p>
+<h4 id="李耳《道德经》赵孟頫楷书版本">
+<a class="anchor" href="#%E6%9D%8E%E8%80%B3%E3%80%8A%E9%81%93%E5%BE%B7%E7%BB%8F%E3%80%8B%E8%B5%B5%E5%AD%9F%E9%A0%AB%E6%A5%B7%E4%B9%A6%E7%89%88%E6%9C%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>李耳《道德经》赵孟頫楷书版本<a class="anchor-link" href="#%E6%9D%8E%E8%80%B3%E3%80%8A%E9%81%93%E5%BE%B7%E7%BB%8F%E3%80%8B%E8%B5%B5%E5%AD%9F%E9%A0%AB%E6%A5%B7%E4%B9%A6%E7%89%88%E6%9C%AC"> </a>
+</h4>
+<p>《道德经》分为《道经》与《德经》两卷，共五千字。该版本由元代书法家赵孟頫创作于公元1316年，结构严谨，字迹清晰，现藏于故宫博物院。将其扫描档整理为pdf版本文件。</p>
+<p>图片取自<a href="http://www.360doc.com/content/17/1215/13/32665938_713305280.shtml">360doc</a></p>
+<p>链接: <a href="https://pan.baidu.com/s/1Wu2AHw2ws5zFuDzv9idYVQ">百度网盘</a> 提取码: <strong>xakj</strong></p>
 
 </div>
 </div>
@@ -210,7 +203,7 @@ window.onload = wrap_img;
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/fastpages/tensorflow/jupyter/2020/05/04/tensor-operation.html" hidden></a>
+</script><a class="u-url" href="/fastpages/share/files/2021/06/27/To-share-some-of-information.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
