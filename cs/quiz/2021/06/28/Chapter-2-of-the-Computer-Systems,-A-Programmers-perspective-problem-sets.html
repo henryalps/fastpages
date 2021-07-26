@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>《Computer Systems A Programmers perspective》第2章习题 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="《Computer Systems A Programmers perspective》第2章习题" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="深入理解计算机系统.第二章习题记录" />
+<meta property="og:description" content="深入理解计算机系统.第二章习题记录" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"深入理解计算机系统.第二章习题记录","headline":"《Computer Systems A Programmers perspective》第2章习题","dateModified":"2021-06-28T00:00:00-05:00","datePublished":"2021-06-28T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html"},"url":"https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>《Computer Systems A Programmers perspective》第2章习题 | Henrys’ Lab</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="《Computer Systems A Programmers perspective》第2章习题" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="深入理解计算机系统.第二章习题记录" />
+<meta property="og:description" content="深入理解计算机系统.第二章习题记录" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html" />
+<meta property="og:site_name" content="Henrys’ Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"深入理解计算机系统.第二章习题记录","headline":"《Computer Systems A Programmers perspective》第2章习题","dateModified":"2021-06-28T00:00:00-05:00","datePublished":"2021-06-28T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html"},"url":"https://henryalps.github.io/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastpages/">Henrys&#39; Lab</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastpages/about/">關於</a><a class="page-link" href="/fastpages/search/">Search</a><a class="page-link" href="/fastpages/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">《Computer Systems A Programmers perspective》第2章习题</h1><p class="page-description">深入理解计算机系统.第二章习题记录</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-28T00:00:00-05:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastpages/categories/#cs">cs</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages/categories/#quiz">quiz</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/henryalps/fastpages/tree/master/_notebooks/2020-05-04-fastpages.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastpages/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/henryalps/fastpages/master?filepath=_notebooks%2F2020-05-04-fastpages.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/henryalps/fastpages/blob/master/_notebooks/2020-05-04-fastpages.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#define-POS_INFINITY-(double)1.8*10^109">define POS_INFINITY (double)1.8*10^109 </a></li>
+<li class="toc-entry toc-h1"><a href="#define-NEG_INFINITY--(double)1.8*10^109">define NEG_INFINITY -(double)1.8*10^109 </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-06-28-Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2108323759.png" alt="2108323759.png">
+    
+    
+      <figcaption>2108323759.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 通过展开每个十六进制转换为二进制:</p>
+<blockquote>
+<p>2 5 B 9 D 2</p>
+<p>0010 0101 1011 1001 1101 0010</p>
+</blockquote>
+<p>b. 先分为4位一组, 不足四位的, 前边补零:&gt; 1010 1110 0100 1001</p>
+<blockquote>
+<p>A E 4 9</p>
+</blockquote>
+<p>c. 同 A</p>
+<blockquote>
+<p>A 8 B 3 D</p>
+<p>1010 1000 1011 0011 1101</p>
+</blockquote>
+<p>d. 同b</p>
+<blockquote>
+<p>0011 0010 0010 1101 1001 0110</p>
+<p>3 2 2 D 9 5</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3202481767.png" alt="3202481767.png">
+    
+    
+      <figcaption>3202481767.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>仅关注hex, 则有
+23=3+4*5=0x800000,</p>
+<p>2^15=32768, 15=3+4*2=0x800,</p>
+<p>0x2000=1+4*3=2^13,</p>
+<p>12=4*3+0=0x1000,</p>
+<p>64=2^6=4*1+2=0x20,</p>
+<p>0x100=64</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/157235339.png" alt="157235339.png">
+    
+    
+      <figcaption>157235339.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>十进制与十六进制之间的转换相对更容易些, 如下:</p>
+<p>158=16*9 + 14 = 0x9E = 1001 1110</p>
+<p>76=16*4 + 12 = 0x4C = 0100 1100</p>
+<p>145=16*9 + 1 = 0x91 = 1001 0001</p>
+<p>1010 1110 = 0xAE = 16 * 10 + 14 = 174</p>
+<p>0011 1100 = 0x3C = 16*3 + 12 = 60</p>
+<p>1111 0001 = 0xF1 = 16*15 + 1 = 241</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2248763550.png" alt="2248763550.png">
+    
+    
+      <figcaption>2248763550.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在某个数大于15时才发生进位. 如果减完小于0时, 则变成F即可:
+A. 0x6061
+B. 0x603c
+C. 0x608e
+D. 0x009e</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/5707420382.png" alt="5707420382.png">
+    
+    
+      <figcaption>5707420382.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>小端即尾部在前, 大端即头部在前</p>
+<p>A. 78 | 12</p>
+<p>B. 78 56 | 12 34</p>
+<p>C. 78 56 34 | 12 34 56</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/706349304.png" alt="706349304.png">
+    
+    
+      <figcaption>706349304.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A.
+0027C8F8 -&gt; 0010 0111 1100 1000 1111 1000</p>
+<p>4A1F23E0 -&gt; 0100 1010 0001 1111 0010 0011 1110 0000</p>
+<p>B.0 0111 1100 1000 1111 1000 共21位能匹配上</p>
+<p>C. 整形表示的前几位以及浮点的前后几位对不上</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/1998488456.png" alt="1998488456.png">
+    
+    
+      <figcaption>1998488456.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>由于字符编码方式是固定从前到后, 且在尾部填充0x00, 所以打印的结果为:
+6D 6E 6F 70 71 72</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9585716940.png" alt="9585716940.png">
+    
+    
+      <figcaption>9585716940.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>~a 10110001</p>
+<p>~b 00011110</p>
+<p>a&amp;b 01000000</p>
+<p>a|b 11101111</p>
+<p>a^b 10010000</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/637424589.png" alt="637424589.png">
+    
+    
+      <figcaption>637424589.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. Black &lt;&gt; White</p>
+<p>Blue &lt;&gt; Yellow</p>
+<p>Green &lt;&gt; Magenta</p>
+<p>Cyan &lt;&gt; Red</p>
+<p>B. 001 | 010 = 011 = Cyan</p>
+<p>110 &amp; 011 = 010 = Green</p>
+<p>100 ^ 101 = 001 = Blue</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/1520766867.png" alt="1520766867.png">
+    
+    
+      <figcaption>1520766867.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Step 1 : a a^b</p>
+<p>Step 2 : 0^b=b a^b</p>
+<p>Step 3 : b a</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/582882909.png" alt="582882909.png">
+    
+    
+      <figcaption>582882909.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 循环到结尾时, 头指针与尾指针是指向同一个元素的, 就是k;</p>
+<p>B. 因为<code>inplace_swap</code>第一步就是对输入的两个参数进行异或，自身与自身异或后就变成0；</p>
+<p>C. 将first&lt;=last改为first&lt;last即可避免该问题。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/6815917291.png" alt="6815917291.png">
+    
+    
+      <figcaption>6815917291.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. x &amp; 0xFF</p>
+<p>B. x ^ ~0xFF</p>
+<p>C. x | 0xFF</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/6011234190.png" alt="6011234190.png">
+    
+    
+      <figcaption>6011234190.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>首先写出bis与bic的C语言形式如下：</p>
+<p>bis -&gt; x | m</p>
+<p>bic -&gt; x &amp; ~m</p>
+<p>现在要求x | y 则直接调用bis即可 bis(x, y)</p>
+<p>要求 x ^ y 等效于找到一个掩码m， 这个码在x与y相同的位上为1，不同的位上为0，然后用bis和bic配合达到异或效果。</p>
+<p>某一位上 xy 同时为1， 则bis为1， bic为0； xy同时为0则bis为0， bic为0； x为1 y为0则bis为1， bic为1， x为0 y为1则bis为1， bic为0</p>
+<p>调用两次bic再对结果bis即可：</p>
+<p>bis(bic(x,y), bic(y,x))</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4978645098.png" alt="4978645098.png">
+    
+    
+      <figcaption>4978645098.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>0x55 = 0101 0101 0x46 = 0100 0110</p>
+<p>~0x55 = 1010 1010 ~0x46 = 1011 1001</p>
+<p>a&amp;b = 0100 0100 a&amp;&amp;b = true</p>
+<p>a|b = 0101 0111 a||b = true</p>
+<p>~a|~b = 1011 1011 !a||!b = false</p>
+<p>a&amp;!b = 0001 0001 a&amp;&amp;~b = false</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/287266995.png" alt="287266995.png">
+    
+    
+      <figcaption>287266995.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>思路：通过异或可以实现在x等于y时结果为0，其余情况下均不为0，然后取反即可。</p>
+<p>！（x ^ y)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4526913297.png" alt="4526913297.png">
+    
+    
+      <figcaption>4526913297.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>0xD4 = 1101 0100 &lt;&lt;2 0101 0000 &gt;&gt;&gt;3 0001 1010 &gt;&gt;3 1111 1010</p>
+<p>0x64 = 0110 0100 &lt;&lt;2 1001 0000 &gt;&gt;&gt;3 0000 1100 &gt;&gt;3 0000 1100</p>
+<p>0x72 = 0111 0010 &lt;&lt;2 1100 1000 &gt;&gt;&gt;3 0000 1110 &gt;&gt;3 0000 1110</p>
+<p>0x44 = 0100 0100 &lt;&lt;2 0001 0000 &gt;&gt;&gt;3 0000 1000 &gt;&gt;3 0000 1000</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2805272598.png" alt="2805272598.png">
+    
+    
+      <figcaption>2805272598.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>0x1 = 0001 = 2^0 = 1 = 1</p>
+<p>0xB = 1011 = 2^3 + 2^1 + 2^0 = 11 = -5</p>
+<p>0x2 = 0010 = 2^1 = 2 = 2</p>
+<p>0x7 = 0111 = 2^2 + 2^1 + 2^0 = 7 = 7</p>
+<p>0xC = 1100 = 2^3 + 2^2 = 12 = -4</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/6846633068.png" alt="6846633068.png">
+    
+    
+      <figcaption>6846633068.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>32位补码形式表示的十六进制 -&gt; 等价的十进制</p>
+<p>此题意思不明确，跳过。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/7500749156.png" alt="7500749156.png">
+    
+    
+      <figcaption>7500749156.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>T2U表示将有符号数转化为无符号数：</p>
+<p>-1 1111 &gt; 15</p>
+<p>-5 1011 &gt; 11</p>
+<p>-6 1010 &gt; 10</p>
+<p>-4 1010 &gt; 12</p>
+<p>1 0001 &gt; 1</p>
+<p>8 有bug，无法表示</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/276461915.png" alt="276461915.png">
+    
+    
+      <figcaption>276461915.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>答： 对于-1、-5、-6与-4，由于是负数需要加上2^4=16. 对于1保持不变即可。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/953430086.png" alt="953430086.png">
+    
+    
+      <figcaption>953430086.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>无符号 0</p>
+<p>有符号 1</p>
+<p>无符号 0</p>
+<p>有符号 1</p>
+<p>无符号 1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9159590096.png" alt="9159590096.png">
+    
+    
+      <figcaption>9159590096.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 套用B2T的公式得到 -1 * 2^3 + 2 + 1 = -5</p>
+<p>B. 根据符号扩展可得 11011=1011</p>
+<p>C. 同B.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3966727120.png" alt="3966727120.png">
+    
+    
+      <figcaption>3966727120.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. word是无符号型, 所以直接对word做移位都是逻辑移位. 同时unsigned是32位的, 相当于8个十六进制数字, 移24位相当于6个十六进制.</p>
+<p>强制类型转换的优先级要高于移位的优先级. 强制类型转换会保持位模式不变, 但是移位后变成算数移位.</p>
+<p>0x00000076 0x00000076</p>
+<p>0x00000021 0x00000021</p>
+<p>0x000000C9 0xFFFFFFC9</p>
+<p>0x00000087 0xFFFFFF87</p>
+<p>B.</p>
+<p>func1 转为int型并保留最后两位数字</p>
+<p>func2 在最后两位小于0x80时取原始值;大于等于0x80时取补码值;?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/6160122692.png" alt="6160122692.png">
+    
+    
+      <figcaption>6160122692.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>无符号数截断直接移除首位即可:</p>
+<p>0001 = 001 = 1</p>
+<p>0011 = 011 = 3</p>
+<p>1100 = 100 = 4</p>
+<p>1110 = 110 = 6</p>
+<p>有符号数也是移除首位, 不过按照有符号来计算实际值:</p>
+<p>1</p>
+<p>3</p>
+<p>-4</p>
+<p>-2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9825510943.png" alt="9825510943.png">
+    
+    
+      <figcaption>9825510943.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在表达式中同时包含有符号和无符号数时, 会将所有数字都转为无符号数再进行计算. 因此</p>
+<p>length - 1 变为 0U - 1U (这是无符号运算) 值为 2^32 -1. 导致 result += a[1]会被执行, 出现错误. 可以修改为:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4608842009.png" alt="4608842009.png">
+    
+    
+      <figcaption>4608842009.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 在s的长度小于t的长度时会发生此种情况.</p>
+<p>B. 因为无符号数减法, 如果s&lt;t则会出现溢出, 导致结果是一个很大的正数.</p>
+<p>C&gt; 改为<code>strlen(s) &gt; strlen(t)</code>即可</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2015088830.png" alt="2015088830.png">
+    
+    
+      <figcaption>2015088830.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">uadd_ok</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">x</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">y</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3229462938.png" alt="3229462938.png">
+    
+    
+      <figcaption>3229462938.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1 = 1 &gt; 2^4 - 1 = 15 = F 0001 &lt;&gt; 1111</p>
+<p>4 = 4 &gt; 2^4 - 4 = 12 = C</p>
+<p>7 = 7 &gt; 2^4 - 7 = 9 = 9</p>
+<p>A = 10 &gt; 2^4 - 10 = 6 = 6</p>
+<p>E = 14 &gt; 2^4 - 14 = 2 = 2</p>
+<p>2 = 2 &gt; 2^4 -2 = 14 = E 0010 &lt;&gt; 1110</p>
+<p>9 = 9 &gt; 2^4 -9 = 7 1001 &lt;&gt; 0111</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/237544328.png" alt="237544328.png">
+    
+    
+      <figcaption>237544328.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>10100 + 10001 ( -12 + -15 = -27 ) == 00101 = 5 &gt; situation 1</p>
+<p>11000 + 11000 ( -8 + -8 = -16 ) == 10000 = -16 &gt; situation 2</p>
+<p>10111 + 01000 ( -9 + 8 = -1 ) == 11111 = -1 &gt; situation 2</p>
+<p>00010 + 00101 ( 2 + 5 = 7 ) == 00111 = 7 &gt; situation 3</p>
+<p>01100 + 00100 ( 12 + 4 = 16 ) == 10000 = -16 &gt; situation 4</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/322864007.png" alt="322864007.png">
+    
+    
+      <figcaption>322864007.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">tadd_ok</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/8142668399.png" alt="8142668399.png">
+    
+    
+      <figcaption>8142668399.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>由于补码的加减法在位表示上与无符号数完全相同, 因此先加后减并不会损失信息, 因此该函数的返回结果恒为真.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/8365005545.png" alt="8365005545.png">
+    
+    
+      <figcaption>8365005545.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>注意到y的取值范围是-2^32 ~ 2^32-1. 当y取-2^32时, 直接-y就必然会产生溢出. 此时x是任意非负值, 都会导致结果不对.</p>
+<p>为了修复这个问题, 可以同时判断y-x也不会发生溢出. 因为如果x-y溢出了, 那么y-x肯定也溢出了.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">tsub_ok</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">tadd_ok</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">tadd_ok</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2682184831.png" alt="2682184831.png">
+    
+    
+      <figcaption>2682184831.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2H = 2D -2H = -2D 0010 &lt;&gt; 1110</p>
+<p>3H = 3D -3H = -3D</p>
+<p>9H = 1001 = -7D -9H = 7D 0111</p>
+<p>BH = 1011 = -5D -BH = 5D 0101</p>
+<p>CH = 1100 = -4D -CH = 4D 0100</p>
+<p>两者的位模式完全相同, 因为他们都要求加和为0. 因此我们可以用unsigned的逆元来求signed的逆元.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3093735950.png" alt="3093735950.png">
+    
+    
+      <figcaption>3093735950.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>无符号: x=100B=4D y=101B=5D x*y=20D=10100 截断后为100</p>
+<p>补码: x=100B=-4D y=101B=-3D x*y=12D=01100 截断后为100</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/961283094.png" alt="961283094.png">
+    
+    
+      <figcaption>961283094.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>argue that the case x=0 is handled correctly.</li>
+</ol>
+<p>0乘任何数都为0, 一定不可能溢出, 所以x=0时必然返回1, 是正确的.</p>
+<ol>
+<li>证明 x*y=p+t2^w</li>
+</ol>
+<p>x<em>y的结果只有两种, 溢出或者不溢出. 溢出时, 结果位数大于w小于等于2w, 将结果拆分为w+1位-2w位和1-w位两部分.分别对应于s和p.s可以看做是一个不超过w位的数移位w位得到, 即s=t2^w. 当且仅当t不为0时, s不为0, x</em>y发生溢出.</p>
+<ol>
+<li>证明p可以写作p=x*q+r</li>
+</ol>
+<p>由于p就是x/q的结果, 所以p=x*q加上余数, 余数r的绝对值小于x</p>
+<ol>
+<li>证明当且仅当r=t=0时, q=y</li>
+</ol>
+<p>证明if: 如果r=t=0 根据公式可得x<em>y=x</em>q, 又因为x不为0, 所以y=q</p>
+<p>证明onlyif: 如果r或者t中任意一个不为0, 则x<em>y=x</em>q+N, N不为0, 此时y=(q+N/x)不等于q.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/7731672882.png" alt="7731672882.png">
+    
+    
+      <figcaption>7731672882.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1">// 如果溢出, 则32~64位必不为0</span>
+<span class="kt">int</span> <span class="nf">tmult_ok</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int64_t</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span> <span class="c1">// 注意此处必需先做强制类型转换, 否则结果会变为溢出之后的结果</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">p</span> <span class="o">==</span> <span class="n">p</span><span class="p">;</span> <span class="c1">// 用移位的话, 负数可能会有问题</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/1232605340.png" alt="1232605340.png">
+    
+    
+      <figcaption>1232605340.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>k=0 b=0 1倍 b=a 2倍</p>
+<p>k=1 b=0 2倍 b=a 3倍</p>
+<p>k=2 b=0 4倍 b=a 5倍</p>
+<p>k=3 b=0 8倍 b=a 9倍</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/8158948903.png" alt="8158948903.png">
+    
+    
+      <figcaption>8158948903.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>可以修改为 x&lt;&lt;n + x&lt;&lt;n - x&lt;&lt;m</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9996481720.png" alt="9996481720.png">
+    
+    
+      <figcaption>9996481720.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>K = 7 移位1次, 由于7=8-1, 所以使用 x&lt;&lt;3 - x即可</p>
+<p>K = 30 = 11110, 移位4次, 和有效位数量相同, 因此使用 x&lt;&lt;4 + x&lt;&lt;3 + x&lt;&lt;2 + x&lt;&lt;1即可</p>
+<p>K = 28 = 11100, 移位2次, 28=100000 - 100, 因此使用 x&lt;&lt;5 - x&lt;&lt;2即可</p>
+<p>K = 55 = 110111, 移位2次, 加减两次. 我们先将K+1可以得到111000, 这个可以用两次移位和一次加减得到即 x&lt;&lt;6-x&lt;&lt;3, 然后再减去加的一次得到 x&lt;&lt;6-x&lt;&lt;3-x即可</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4361222901.png" alt="4361222901.png">
+    
+    
+      <figcaption>4361222901.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在n=m时, 使用A. n!=m时, 由于加法和减法的开销相同, 因此优先使用B. 如B会造成溢出, 再使用A.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4230356684.png" alt="4230356684.png">
+    
+    
+      <figcaption>4230356684.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">div16</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">symbol_bit</span> <span class="o">=</span> <span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">32</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">symbol_bit</span><span class="o">&lt;&lt;</span><span class="mi">4</span> <span class="o">-</span> <span class="n">symbol_bit</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/523693856.png" alt="523693856.png">
+    
+    
+      <figcaption>523693856.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>将optarith写成数学表达式, 我们可以得到:</p>
+<p>x * 32 - x + y/8</p>
+<p>所以M=31, N=8</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9100579135.png" alt="9100579135.png">
+    
+    
+      <figcaption>9100579135.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 2 x=-2^32时, x-1&gt;0 且x&lt;0</p>
+<p>B. 1 7 = 111, x&lt;&lt;29为左移不用考虑符号位?</p>
+<p>C. 2 x&gt;2^16次方会产生溢出</p>
+<p>D. 2 x不为-2^32</p>
+<p>E. 这个题目肯定有问题</p>
+<p>F. 2 任意两个相加不会溢出的负数, 如-1和-1</p>
+<p><code>G. 2 假设x,y均大于0, 则 x*~y + uy*ux = x*~y + y*x=x*(y+~y), 不成立</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3773639964.png" alt="3773639964.png">
+    
+    
+      <figcaption>3773639964.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>3/4 = 0.11B = 0.75D</p>
+<p>5/16 = 0.0101B = 0.3125D</p>
+<p>10.1011 = 2 + 1/2 + 1/8 + 1/16 = 43/16 = 2.6875D</p>
+<p>1.001 = 1 + 1/8 = 9/8 = 1.125D</p>
+<p>5.875 = 5875/1000 = 47/8 = 101.111B</p>
+<p>3.1875 = 31875/10000 = 255/80 = 51/16 = 11.0011B</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/3155652617.png" alt="3155652617.png">
+    
+    
+      <figcaption>3155652617.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>A. 0.000000000000000000000[0011]...</code></p>
+<p>B. x = 3/32 + 3/512 + 3/8192 + 3/131072 + 3/2097152 = 0.099999904632 0.1-x = 0.000000093 = 9*10^-8</p>
+<p>C. 100h = 100 <em> 3600s = 0.36</em>10^6, 100h <em> 9</em>10^-8 = 3.24*10^-2</p>
+<p>D, 3.24<em>10^-2 </em> 2000 = 62.8m</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4152430903.png" alt="4152430903.png">
+    
+    
+      <figcaption>4152430903.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在阶码为全0时， 阶码偏置后为1-Bias，这里Bias为1所以偏置后为0, 此时f没有隐含的1就是原始小数：</p>
+<p>0 00 00 e=0 E=0 2^E=1 f=0 M=0 2^E*M = 0 V=+0 Dec=0</p>
+<p>0 00 01 e=0 E=0 2^E=1 f=1/4 M=1/4 2^E*M=1/4 V=1/4 Dec=0.25</p>
+<p>0 00 10 e=0 E=0 2^E=1 f=2/4 M=2/4 2^E*M=1/4 V=1/2 Dec=0.5</p>
+<p>0 00 10 e=0 E=0 2^E=1 f=3/4 M=3/4 2^E*M=3/4 V=3/4 Dec=0.75</p>
+<p>0 01 00 e=1 E=0 2^E=1 f=4/4 M=4/4 2^E*M=4/4 V=1 Dec=1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/9611106051.png" alt="9611106051.png">
+    
+    
+      <figcaption>9611106051.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>3510593 = 11 0101 1001 0001 0100 0001B</p>
+<p>32位包括1个符号位，8个阶码位与23个小数位。</p>
+<p>阶码偏置为127，E=e-127. 由于3510593一共是22位，刨除一个隐含位，剩余21位，需要左移21位可以得到阶码为148，转化为二进制为10010100.</p>
+<p>因此全部位为</p>
+<p>0100 1010 0101 0110 0100 0101 0000 0100 即4A564504</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/4465391428.png" alt="4465391428.png">
+    
+    
+      <figcaption>4465391428.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A.不能准确描述的最小正整数 - 相当于无论如何左移或者右移均达不到要求。考虑到隐含位，此时该整数的最高位一定是1.同时，如果该整数是在n+1位以内， 那么都可以表示。包括首位为0余下都为1的情形，这时只需要在尾部留一个0然后控制阶数即可。因此该整数一定是n+2位，首位为1，且末位不为0，满足该条件最小的数为2^(n+1)+1</p>
+<p>B.2^24+1=16777217</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/8852389902.png" alt="8852389902.png">
+    
+    
+      <figcaption>8852389902.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 不是在中间，所以舍入为11.0</p>
+<p>B. 在中间， 舍入偶数为11.0</p>
+<p>C. 不在中间， 舍入为11.0</p>
+<p>D. 在中间，舍入为11.0</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/8469934964.png" alt="8469934964.png">
+    
+    
+      <figcaption>8469934964.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 0.0001 1001 1001 1001 1001 [1001] 由于尾部为110&gt;100, 所以舍入后为 0.0001 1001 1001 1001 1001 101</p>
+<p>B. 约为0.0000002384185791015625=2.384*10^-8</p>
+<p>C. 约为8.58*10^-3</p>
+<p>D. 约为1.72m</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/1246884346.png" alt="1246884346.png">
+    
+    
+      <figcaption>1246884346.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>101 1110 &gt; 2^2 * 1.111=111.1=15/2 由于有4位小数，需要舍入，舍入后为1000 = 2^3, 3+7=10所以E=1010, 1010 000</p>
+<p>010 1001 &gt; 1/2 * 1.1001=0.11001=1/2+1/4+1/32=25/32, 由于有5位小数，需要舍入，舍入后为0.1100， 移位-1，-1+7=6所以E=0110, 0110 100</p>
+<p>110 1111 &gt; 2^3 * 1.1111=1111.1=31/2, 由于有5位小数， 需要舍入， 舍入后为10000， 移位4， 4+7=13所以E=1101, 1101 000</p>
+<p>000 0001 &gt; 2^-2 * 0.0001 = 0.000001=1/64, 用非规则形式， E=1-7=-6, 无法表示。用规则形式，隐含位移-6位，-6+7=1所以E=0001, 0001 000</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/1488352469.png" alt="1488352469.png">
+    
+    
+      <figcaption>1488352469.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="define-POS_INFINITY-(double)1.8*10^109">
+<a class="anchor" href="#define-POS_INFINITY-(double)1.8*10%5E109" aria-hidden="true"><span class="octicon octicon-link"></span></a>define POS_INFINITY (double)1.8*10^109<a class="anchor-link" href="#define-POS_INFINITY-(double)1.8*10%5E109"> </a>
+</h1>
+<h1 id="define-NEG_INFINITY--(double)1.8*10^109">
+<a class="anchor" href="#define-NEG_INFINITY--(double)1.8*10%5E109" aria-hidden="true"><span class="octicon octicon-link"></span></a>define NEG_INFINITY -(double)1.8*10^109<a class="anchor-link" href="#define-NEG_INFINITY--(double)1.8*10%5E109"> </a>
+</h1>
+<p>~#define NEG_ZERO -(double)0~ -1.0/POS_INFINITY</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/2414800152.png" alt="2414800152.png">
+    
+    
+      <figcaption>2414800152.png</figcaption>
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A. 总是为真。 因为int转double能保留精确值，double转int在范围内</p>
+<p>B. 不总是为真，可能发生舍入。如2^24+1就会有问题。</p>
+<p>C. 不总是为真，同上；</p>
+<p>D. ~不总是为真，同上；~ 同A.</p>
+<p>E. ~不总是为真， f=-2^32时，-f=0， -0仍然为0.~ float型只需要改变符号位即可</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="henryalps/fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastpages/cs/quiz/2021/06/28/Chapter-2-of-the-Computer-Systems,-A-Programmers-perspective-problem-sets.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastpages/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastpages/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastpages/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Practise, Record, Knowledge</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/henryalps" title="henryalps"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
