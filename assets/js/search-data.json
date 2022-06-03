@@ -139,7 +139,7 @@
   
       ,"page1": {
           "title": "About",
-          "content": "詩雲： . 本是後山人, 偶作前堂客. 醉舞經閣半卷書, 坐井說天闊. 大志戲功名, 海鬥量福禍. 輪到囊中羞澀時, 怒指乾坤錯. . 阅读列表 . 仿照zu1k的做法, 我将最近阅读的网页链接放在My Reading List. .",
+          "content": "詩雲： . 本是後山人, 偶作前堂客. 醉舞經閣半卷書, 坐井說天闊. 大志戲功名, 海鬥量福禍. 輪到囊中羞澀時, 怒指乾坤錯. . 阅读列表 . 仿照zu1k的做法, 我将最近阅读的网页链接放在My Reading List. . Locate Me | 找我 . 我的GPG公钥My GPG Public Key . Or OpenGPG . 8ADB 26C7 6B9D 340C 8675 14F2 3E39 2F33 413C F928 . .",
           "url": "https://henryalps.github.io/fastpages/about/",
           "relUrl": "/about/",
           "date": ""
@@ -150,6 +150,22 @@
   
 
   
+      ,"page3": {
+          "title": "PGP",
+          "content": "--BEGIN PGP PUBLIC KEY BLOCK-- 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 aXPyppyWHOCMy8fSEafR =aUQ4 --END PGP PUBLIC KEY BLOCK-- .",
+          "url": "https://henryalps.github.io/fastpages/pgp/",
+          "relUrl": "/pgp/",
+          "date": ""
+      }
+      
+  
+
+  
+  
+
+  
+
+  
   
 
   
@@ -158,18 +174,13 @@
   
 
   
-
-  
   
 
   
   
 
   
-  
-
-  
-      ,"page10": {
+      ,"page11": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://henryalps.github.io/fastpages/robots.txt",
