@@ -1,7 +1,6 @@
 ---
 layout: page
-title: PGP 
-permalink: /pgp/
+permalink: /about/pgp/
 ---
 
 ```bash

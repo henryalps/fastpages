@@ -20,11 +20,9 @@ permalink: /about/
 
 # Locate Me | 找我
 
-我的GPG公钥[My GPG Public Key](gpg)
+我的PGP公钥[My PGP Public Key](/pgp)
 
-Or [OpenGPG](https://keys.openpgp.org/) 
-
-**8ADB 26C7 6B9D 340C 8675  14F2 3E39 2F33 413C F928**
+Or [OpenPGP](https://keys.openpgp.org/) (**8ADB 26C7 6B9D 340C 8675  14F2 3E39 2F33 413C F928**)
 
 <p align="left">
 <a href="https://codepen.io/henryalps" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="henryalps" height="30" width="40" /></a>
