@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-06-14T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"”create a new blog!“","dateModified":"2022-06-14T00:00:00-05:00","datePublished":"2022-06-14T00:00:00-05:00","description":"Practise, Record, Knowledge","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/2022/06/14/tools.html"},"@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/2022/06/14/tools.html","@context":"https://schema.org"}</script>
+{"datePublished":"2022-06-14T00:00:00-05:00","dateModified":"2022-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/2022/06/14/tools.html"},"description":"Practise, Record, Knowledge","@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/2022/06/14/tools.html","headline":"”create a new blog!“","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-06-14T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"”create a new blog!“","dateModified":"2022-06-14T00:00:00-05:00","datePublished":"2022-06-14T00:00:00-05:00","description":"Practise, Record, Knowledge","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/2022/06/14/tools.html"},"@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/2022/06/14/tools.html","@context":"https://schema.org"}</script>
+{"datePublished":"2022-06-14T00:00:00-05:00","dateModified":"2022-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/2022/06/14/tools.html"},"description":"Practise, Record, Knowledge","@type":"BlogPosting","url":"https://henryalps.github.io/fastpages/2022/06/14/tools.html","headline":"”create a new blog!“","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -173,10 +173,42 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip uninstall translation
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip uninstall googletrans --yes
+<span class="o">!</span>pip install translate
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Found existing installation: googletrans 3.0.0
+Uninstalling googletrans-3.0.0:
+  Successfully uninstalled googletrans-3.0.0
+Collecting translate
+  Downloading translate-3.6.1-py2.py3-none-any.whl (12 kB)
+Collecting click
+  Downloading click-8.1.3-py3-none-any.whl (96 kB)
+     |████████████████████████████████| 96 kB 7.8 MB/s eta 0:00:011
+Collecting libretranslatepy==2.1.1
+  Downloading libretranslatepy-2.1.1-py3-none-any.whl (3.2 kB)
+Requirement already satisfied: lxml in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from translate) (4.6.2)
+Requirement already satisfied: requests in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from translate) (2.27.1)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from requests-&gt;translate) (2.0.0)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from requests-&gt;translate) (1.22)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from requests-&gt;translate) (2021.10.8)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniforge/base/envs/py37/lib/python3.9/site-packages (from requests-&gt;translate) (2.6)
+Installing collected packages: libretranslatepy, click, translate
+Successfully installed click-8.1.3 libretranslatepy-2.1.1 translate-3.6.1
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -190,14 +222,15 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">googletrans</span> <span class="kn">import</span> <span class="n">Translator</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">translate</span> <span class="kn">import</span> <span class="n">Translator</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
-<span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pytorch一小时入门&#39;</span>
-<span class="n">description</span><span class="o">=</span><span class="s1">&#39;抄写一遍Pytorch入门代码&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;How To Resolve the &quot;90010001: Invalid name, address or phone number&quot; Error in Microsoft Exam Profile Page&#39;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;If You Could not Create Microsoft Exam Profile, See this&#39;</span>
 <span class="n">toc</span><span class="o">=</span><span class="s1">&#39;true&#39;</span>
-<span class="n">tags</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;jupyter&#39;</span><span class="p">,</span><span class="s1">&#39;pytorch&#39;</span><span class="p">])</span>
+<span class="n">tags</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;Solution&#39;</span><span class="p">])</span>
 <span class="n">branch</span><span class="o">=</span><span class="s1">&#39;master&#39;</span>
 <span class="n">badges</span><span class="o">=</span><span class="s1">&#39;true&#39;</span>
 <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;true&#39;</span>
@@ -206,12 +239,12 @@ window.onload = wrap_img;
 
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Translator</span><span class="p">()</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="k">return</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Translator</span><span class="p">(</span><span class="n">to_lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\W&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;title not set!&#39;</span><span class="p">)</span>
     <span class="n">exit</span><span class="p">()</span>
-
+    
 <span class="n">format_title</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">format_title</span><span class="p">)</span>
 
@@ -245,16 +278,17 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Getting-Pytorch-one-hour
+<pre>How-To-Resolve-the-&#34;90010001:-Invalid-name,-address-or-phone-number&#34;-Error-in-Microsoft-Exam-Profile-Page
 
-# Pytorch一小时入门
+# How To Resolve the &#34;90010001: Invalid name, address or phone number&#34; Error in Microsoft Exam Profile Page
 
 - toc: true
 - branch: master
 - badges: true
+- use_math: true
 - comments: true
-- categories: [jupyter,pytorch]
-- description: 抄写一遍Pytorch入门代码
+- categories: [Solution]
+- description: If You Could not Create Microsoft Exam Profile, See this
 ---
 
 </pre>
