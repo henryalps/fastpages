@@ -4,9 +4,9 @@
         "post0": {
             "title": "”create a new blog!“",
             "content": "!pip uninstall translation . from googletrans import Translator from datetime import datetime from functools import lru_cache title=&#39;Pytorch一小时入门&#39; description=&#39;抄写一遍Pytorch入门代码&#39; toc=&#39;true&#39; tags=&#39;,&#39;.join([&#39;jupyter&#39;,&#39;pytorch&#39;]) branch=&#39;master&#39; badges=&#39;true&#39; comments=&#39;true&#39; use_math=&#39;true&#39; date=datetime.today().strftime(&#39;%Y-%m-%d&#39;) @lru_cache(maxsize=10) def translate(text): return &#39;-&#39;.join(Translator().translate(text).text.split()) if len(title) &lt; 1: print(&#39;title not set!&#39;) exit() format_title = translate(title) print(format_title) import nbformat as nbf nb = nbf.v4.new_notebook() text = &quot;&quot;&quot; # {title} - toc: {toc} - branch: {branch} - badges: {badges} - use_math: {use_math} - comments: {comments} - categories: [{tags}] - description: {description} &quot;&quot;&quot;.format(title=title, toc=toc, branch=branch, badges=badges, use_math=use_math, comments=comments, tags=tags, description=description) print(text) nb[&#39;cells&#39;] = [nbf.v4.new_markdown_cell(text)] nbf.write(nb, &#39;{}-{}.ipynb&#39;.format(date,format_title)) . Getting-Pytorch-one-hour # Pytorch一小时入门 - toc: true - branch: master - badges: true - comments: true - categories: [jupyter,pytorch] - description: 抄写一遍Pytorch入门代码 .",
-            "url": "https://henryalps.github.io/fastpages/2022/06/02/tools.html",
-            "relUrl": "/2022/06/02/tools.html",
-            "date": " • Jun 2, 2022"
+            "url": "https://henryalps.github.io/fastpages/2022/06/14/tools.html",
+            "relUrl": "/2022/06/14/tools.html",
+            "date": " • Jun 14, 2022"
         }
         
     
@@ -25,7 +25,7 @@
     
         ,"post2": {
             "title": "分享一些整理的资料",
-            "content": "&#26446;&#32819;&#12298;&#36947;&#24503;&#32463;&#12299;&#36213;&#23391;&#38955;&#26999;&#20070;&#29256;&#26412; . 《道德经》分为《道经》与《德经》两卷，共五千字。该版本由元代书法家赵孟頫创作于公元1316年，结构严谨，字迹清晰，现藏于故宫博物院。将其扫描档整理为pdf版本文件。 . 图片取自360doc . 链接: 百度网盘 提取码: xakj .",
+            "content": "&#26446;&#32819;&#12298;&#36947;&#24503;&#32463;&#12299;&#36213;&#23391;&#38955;&#26999;&#20070;&#29256;&#26412; . 《道德经》分为《道经》与《德经》两卷，共五千字。该版本由元代书法家赵孟頫创作于公元1316年，结构严谨，字迹清晰，现藏于故宫博物院。将其扫描档整理为pdf版本文件。 . 图片取自360doc . 链接: 百度网盘 提取码: xakj . &#24320;&#35838;&#21543;-&#33258;&#28982;&#35821;&#35328;&#22788;&#29702;(NLP)-&#23548;&#24072;&#21046;&#21517;&#20225;&#23454;&#35757;&#29677;&#22235;&#26399; . 自然语言处理(NLP)-导师制名企实训班第四期包含了&quot;摘要自动生成&quot;, &quot;企业级任务型对话机器人&quot;以及&quot;企业级搜索工程实践&quot;三个项目, 我感兴趣的是其中&quot;任务型对话机器人&quot;这个项目, 因此分享一下这个项目的相关资料. . 链接: 百度网盘 提取码: dsxi .",
             "url": "https://henryalps.github.io/fastpages/share/files/2021/06/27/To-share-some-of-information.html",
             "relUrl": "/share/files/2021/06/27/To-share-some-of-information.html",
             "date": " • Jun 27, 2021"
