@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>关于KL散度非负性证明 | Henrys’ Lab</title>
+<title>Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案 | Henrys’ Lab</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="关于KL散度非负性证明" />
+<meta property="og:title" content="Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="对中一个公式的思考" />
-<meta property="og:description" content="对中一个公式的思考" />
-<link rel="canonical" href="https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html" />
-<meta property="og:url" content="https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html" />
+<meta name="description" content="Practise, Record, Knowledge" />
+<meta property="og:description" content="Practise, Record, Knowledge" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html" />
 <meta property="og:site_name" content="Henrys’ Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-05T00:00:00-05:00" />
+<meta property="article:published_time" content="2024-05-12T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"对中一个公式的思考","@type":"BlogPosting","headline":"关于KL散度非负性证明","dateModified":"2021-04-05T00:00:00-05:00","datePublished":"2021-04-05T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html"},"@context":"https://schema.org"}</script>
+{"description":"Practise, Record, Knowledge","@type":"BlogPosting","headline":"Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案","dateModified":"2024-05-12T00:00:00-05:00","datePublished":"2024-05-12T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://henryalps.github.io/fastpages/feed.xml" title="Henrys' Lab" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -24,19 +24,19 @@
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-165367915-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
 
 <link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>关于KL散度非负性证明 | Henrys’ Lab</title>
+<title>Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案 | Henrys’ Lab</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="关于KL散度非负性证明" />
+<meta property="og:title" content="Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="对中一个公式的思考" />
-<meta property="og:description" content="对中一个公式的思考" />
-<link rel="canonical" href="https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html" />
-<meta property="og:url" content="https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html" />
+<meta name="description" content="Practise, Record, Knowledge" />
+<meta property="og:description" content="Practise, Record, Knowledge" />
+<link rel="canonical" href="https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html" />
+<meta property="og:url" content="https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html" />
 <meta property="og:site_name" content="Henrys’ Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-05T00:00:00-05:00" />
+<meta property="article:published_time" content="2024-05-12T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"对中一个公式的思考","@type":"BlogPosting","headline":"关于KL散度非负性证明","dateModified":"2021-04-05T00:00:00-05:00","datePublished":"2021-04-05T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html"},"@context":"https://schema.org"}</script>
+{"description":"Practise, Record, Knowledge","@type":"BlogPosting","headline":"Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案","dateModified":"2024-05-12T00:00:00-05:00","datePublished":"2024-05-12T00:00:00-05:00","url":"https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryalps.github.io/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -113,8 +113,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">关于KL散度非负性证明</h1><p class="page-description">对<统计学习方法>中一个公式的思考</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-04-05T00:00:00-05:00" itemprop="datePublished">
-        Apr 5, 2021
+    <h1 class="post-title p-name" itemprop="name headline">Cloudflare Worker Edit Code出现The connection was reset. 问题的解决方案</h1><p class="page-description">---</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2024-05-12T00:00:00-05:00" itemprop="datePublished">
+        May 12, 2024
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -126,10 +126,7 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/fastpages/categories/#统计学习方法">统计学习方法</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/fastpages/categories/#KL-Divergence">KL-Divergence</a>
+        <a class="category-tags-link" href="/fastpages/categories/#Solution">Solution</a>
         
       
       </p>
@@ -160,16 +157,11 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#背景">背景 </a></li>
-<li class="toc-entry toc-h3"><a href="#问题">问题 </a></li>
-<li class="toc-entry toc-h3"><a href="#问题的解决">问题的解决 </a></li>
-<li class="toc-entry toc-h3"><a href="#总结">总结 </a></li>
-</ul><!--
+    <!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2021-04-05-On-the-non-negative-proof-of-KL-divergence.ipynb
+# file to edit: _notebooks/2024-05-12-Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -183,84 +175,31 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="背景">
-<a class="anchor" href="#%E8%83%8C%E6%99%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>背景<a class="anchor-link" href="#%E8%83%8C%E6%99%AF"> </a>
-</h3>
-<p>在学习&lt;统计学习方法&gt;时, 对末尾的公式有疑问, 查询记录在这里.&lt;/p&gt;
+<p>Cloudflare Worker 创建完成后，在编辑代码时，出现以下问题：</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="问题">
-<a class="anchor" href="#%E9%97%AE%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>问题<a class="anchor-link" href="#%E9%97%AE%E9%A2%98"> </a>
-</h3>
+<p><img src="https://foam-1257577213.cos.ap-guangzhou.myqcloud.com/images/blog/1715502605773.png" alt="1715502605773.png" /></p>
+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>KL散度的公式如下:
-$$ 
-D_{\mathrm{KL}}(P \| Q)=\int_{-\infty}^{\infty} p(x) \log \left(\frac{p(x)}{q(x)}\right) d x
-$$</p>
-<p>在证明其非负时, 用到了jansen不等式, 如下:
-$$
-\varphi(\mathrm{E}[X]) \leq \mathrm{E}[\varphi(X)]
-$$</p>
-<p>关键点是这里的推导:
-$$
-\begin{aligned}
-\int p(x) \log \frac{p(x)}{q(x)} d x &amp;=-\int p(x) \log \frac{q(x)}{p(x)} d x \\
-&amp; \leqslant-\log \int p(x) \frac{q(x)}{p(x)} d x=0
-\end{aligned}
-$$</p>
+<p>解决方案:</p>
+<p>将以下两个域名加入代理中：</p>
+<div class="highlight"><pre><span></span><span class="err">*.cloudflare.com</span>
+<span class="err">*.pages.dev</span>
+</pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="问题的解决">
-<a class="anchor" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3" aria-hidden="true"><span class="octicon octicon-link"></span></a>问题的解决<a class="anchor-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3"> </a>
-</h3>
-<p>首先, jansen不等式中的 $X$ 可以用 $g(x)$ 替换, 得到 $$\varphi(E[g(x)]) \leq E[\varphi(g(x))] \quad(1)$$</p>
-<p>其次, 定义 $$g(x) = \frac{q(x)}{p(x)} \quad(2)$$ $$\varphi(x) = \log(x) \quad(3)$$</p>
-<p>再次就到了这里的一个关键点, 即复合函数如何求期望. 根据维基百科, $$E[g(x)] = \int g(x) p(x) d x \quad(4)$$ $$E[\varphi(g(x))]=\int p(x) \varphi(g(x)) d x \quad(5)$$ 这里隐含着条件x是以$p(x)$为PDF的随机变量.</p>
-<p>将(2)代入(4) (5)得到 $$\begin{aligned}
-E[\varphi(g(x))] &amp;=\int f(x) \varphi(g(x)) d x \\
-&amp;=\int p(x) \log \left(\frac{q(x)}{p(x)}\right) d x
-\end{aligned}(6)$$</p>
-<p>
-$$E[g(x)]=\int \frac{q(x)}{p(x)} p(x) d x \quad(7)$$
-</p>
-<p>再代入(1)便得到了问题中的结论.</p>
+</div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="总结">
-<a class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span class="octicon octicon-link"></span></a>总结<a class="anchor-link" href="#%E6%80%BB%E7%BB%93"> </a>
-</h3>
-<p>这个式子感觉并不直观, 要想到它, 首先要了解log是一个凸函数, 其次对jansen不等式十分熟悉, 最后能够在PDF和期望之间建立关联, 我就是在最后一步被卡住了.</p>
-
-</div>
-</div>
-</div>
-&lt;/div&gt;
- 
-
-统计学习方法&gt;</div>
-</div></div>
-</div>
 
 
   </div><!-- from https://github.com/utterance/utterances -->
@@ -271,7 +210,7 @@ $$E[g(x)]=\int \frac{q(x)}{p(x)} p(x) d x \quad(7)$$
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/fastpages/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/kl-divergence/2021/04/05/On-the-non-negative-proof-of-KL-divergence.html" hidden></a>
+</script><a class="u-url" href="/fastpages/solution/2024/05/12/Solution-to-Cloudflare-Worker-Edit-Code-The-connection-was-reset-issue.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
